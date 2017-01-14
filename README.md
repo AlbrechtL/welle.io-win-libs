@@ -15,3 +15,6 @@ libusb-1.0.20.7z | http://libusb.info/
 portaudio-r1891-build.zip | https://github.com/adfernandes/precompiled-portaudio-windows/blob/master/portaudio-r1891-build.zip
 RelWithDebInfo.zip | http://sdr.osmocom.org/trac/attachment/wiki/rtl-sdr/RelWithDebInfo.zip
 libfaad.lib | https://github.com/sunqueen/vlc-2.2.1.32-2013/blob/master/win32/lib/libfaad.lib
+libsamplerate.dll | http://taps.cs.princeton.edu/release/files/snapshot/win32/
+zlib-1.2.3-bin.zip | http://gnuwin32.sourceforge.net/downlinks/zlib-bin-zip.php
+zlib-1.2.3-lib.zip | http://gnuwin32.sourceforge.net/downlinks/zlib-lib-zip.php
