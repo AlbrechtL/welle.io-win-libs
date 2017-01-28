@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>dab-rpi</DisplayName>
+    <Description>dab-rpi</Description>
+    <Version>0.997</Version>
+    <ReleaseDate>2017-01-18</ReleaseDate>
+    <Licenses>
+        <License name="GNU GENERAL PUBLIC LICENSE" file="license.txt" />
+    </Licenses>
+	<Script>installscript.qs</Script>
+	<Default>true</Default>
+</Package>
