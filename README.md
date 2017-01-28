@@ -18,3 +18,5 @@ libfaad.lib | https://github.com/sunqueen/vlc-2.2.1.32-2013/blob/master/win32/li
 libsamplerate.dll | http://taps.cs.princeton.edu/release/files/snapshot/win32/
 zlib-1.2.3-bin.zip | http://gnuwin32.sourceforge.net/downlinks/zlib-bin-zip.php
 zlib-1.2.3-lib.zip | http://gnuwin32.sourceforge.net/downlinks/zlib-lib-zip.php
+SDRplay | http://www.sdrplay.com/windl.php
+airspy | https://github.com/airspy/host/releases/download/v1.0.9/airspy_host_tools_win32_x86_x64_v1_0_9.zip
