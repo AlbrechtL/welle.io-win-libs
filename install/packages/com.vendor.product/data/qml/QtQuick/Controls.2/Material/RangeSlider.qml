@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Material 2.0
-import QtQuick.Controls.Material.impl 2.0
+import QtQuick 2.8
+import QtQuick.Templates 2.1 as T
+import QtQuick.Controls.Material 2.1
+import QtQuick.Controls.Material.impl 2.1
 
 T.RangeSlider {
     id: control
@@ -57,6 +57,7 @@ T.RangeSlider {
         value: first.value
         handleHasFocus: activeFocus
         handlePressed: first.pressed
+        handleHovered: first.hovered
     }
 
     second.handle: SliderHandle {
@@ -65,6 +66,7 @@ T.RangeSlider {
         value: second.value
         handleHasFocus: activeFocus
         handlePressed: second.pressed
+        handleHovered: second.hovered
     }
 
     background: Rectangle {
@@ -74,7 +76,7 @@ T.RangeSlider {
         implicitHeight: horizontal ? 48 : 200
         width: horizontal ? control.availableWidth : 1
         height: horizontal ? 1 : control.availableHeight
-        color: control.Material.primaryTextColor
+        color: control.Material.foreground
         scale: horizontal && control.mirrored ? -1 : 1
 
         readonly property bool horizontal: control.orientation === Qt.Horizontal

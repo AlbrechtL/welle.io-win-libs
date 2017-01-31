@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Universal 2.0
+import QtQuick 2.8
+import QtQuick.Templates 2.1 as T
+import QtQuick.Controls.Universal 2.1
 
 T.ToolButton {
     id: control
@@ -66,7 +66,13 @@ T.ToolButton {
         implicitWidth: 68
         implicitHeight: 48 // AppBarThemeCompactHeight
 
-        color: control.down ? control.Universal.listMediumColor :
-               control.enabled && (control.highlighted || control.checked) ? control.Universal.accent : "transparent"
+        color: control.enabled && (control.highlighted || control.checked) ? control.Universal.accent : "transparent"
+
+        Rectangle {
+            width: parent.width
+            height: parent.height
+            visible: control.down || control.hovered
+            color: control.down ? control.Universal.listMediumColor : control.Universal.listLowColor
+        }
     }
 }

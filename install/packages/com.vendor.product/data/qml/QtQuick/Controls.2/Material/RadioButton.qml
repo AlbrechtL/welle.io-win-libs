@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Material 2.0
-import QtQuick.Controls.Material.impl 2.0
+import QtQuick 2.8
+import QtQuick.Templates 2.1 as T
+import QtQuick.Controls.Material 2.1
+import QtQuick.Controls.Material.impl 2.1
 
 T.RadioButton {
     id: control
@@ -58,6 +58,18 @@ T.RadioButton {
         x: text ? (control.mirrored ? control.width - width - control.rightPadding : control.leftPadding) : control.leftPadding + (control.availableWidth - width) / 2
         y: control.topPadding + (control.availableHeight - height) / 2
         control: control
+
+        Ripple {
+            x: (parent.width - width) / 2
+            y: (parent.height - height) / 2
+            width: 28; height: 28
+
+            z: -1
+            anchor: control
+            pressed: control.pressed
+            active: control.down || control.visualFocus || control.hovered
+            color: control.checked ? control.Material.highlightedRippleColor : control.Material.rippleColor
+        }
     }
 
     contentItem: Text {
@@ -66,7 +78,7 @@ T.RadioButton {
 
         text: control.text
         font: control.font
-        color: control.enabled ? control.Material.primaryTextColor : control.Material.hintTextColor
+        color: control.enabled ? control.Material.foreground : control.Material.hintTextColor
         elide: Text.ElideRight
         visible: control.text
         horizontalAlignment: Text.AlignLeft

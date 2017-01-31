@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Material 2.0
-import QtQuick.Controls.Material.impl 2.0
+import QtQuick 2.8
+import QtQuick.Templates 2.1 as T
+import QtQuick.Controls.Material 2.1
+import QtQuick.Controls.Material.impl 2.1
 
 T.SwipeDelegate {
     id: control
@@ -60,7 +60,7 @@ T.SwipeDelegate {
 
         text: control.text
         font: control.font
-        color: control.enabled ? control.Material.primaryTextColor : control.Material.hintTextColor
+        color: control.enabled ? control.Material.foreground : control.Material.hintTextColor
         elide: Text.ElideRight
         visible: control.text
         horizontalAlignment: Text.AlignLeft
@@ -83,10 +83,20 @@ T.SwipeDelegate {
         Rectangle {
             width: parent.width
             height: parent.height
-            visible: control.down || control.highlighted || control.visualFocus
-            color: control.down ? control.Material.buttonPressColor :
-                   control.visualFocus || control.hovered ? control.Material.swipeDelegateHoverColor :
-                   control.Material.listHighlightColor
+            visible: control.highlighted
+            color: control.Material.listHighlightColor
+        }
+
+        Ripple {
+            width: parent.width
+            height: parent.height
+
+            clip: visible
+            pressed: control.pressed
+            anchor: control
+            active: control.down || control.visualFocus || control.hovered
+            color: control.Material.rippleColor
+            enabled: control.swipe.position === 0
         }
 
         Behavior on x {

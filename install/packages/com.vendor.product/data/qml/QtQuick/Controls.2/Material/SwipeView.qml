@@ -34,8 +34,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
+import QtQuick 2.8
+import QtQuick.Templates 2.1 as T
 
 T.SwipeView {
     id: control
@@ -47,6 +47,7 @@ T.SwipeView {
 
     contentItem: ListView {
         model: control.contentModel
+        interactive: control.interactive
         currentIndex: control.currentIndex
 
         spacing: control.spacing

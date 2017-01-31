@@ -221,7 +221,7 @@ Item {
         \qmlproperty string TestCase::name
 
         This property defines the name of the test case for result reporting.
-        The default is the empty string.
+        The default value is an empty string.
 
         \code
         TestCase {
@@ -391,6 +391,73 @@ Item {
         if (msg === undefined)
             msg = "";
         if (!qtest_results.verify(cond, msg, util.callerFile(), util.callerLine()))
+            throw new Error("QtQuickTest::fail")
+    }
+
+    /*!
+        \since 5.8
+        \qmlmethod TestCase::tryVerify(function, timeout = 5000, message = "")
+
+        Fails the current test case if \a function does not evaluate to
+        \c true before the specified \a timeout (in milliseconds) has elapsed.
+        The function is evaluated multiple times until the timeout is
+        reached. An optional \a message is displayed upon failure.
+
+        This function is intended for testing applications where a condition
+        changes based on asynchronous events. Use verify() for testing
+        synchronous condition changes, and tryCompare() for testing
+        asynchronous property changes.
+
+        For example, in the code below, it's not possible to use tryCompare(),
+        because the \c currentItem property might be \c null for a short period
+        of time:
+
+        \code
+        tryCompare(listView.currentItem, "text", "Hello");
+        \endcode
+
+        Instead, we can use tryVerify() to first check that \c currentItem
+        isn't \c null, and then use a regular compare afterwards:
+
+        \code
+        tryVerify(function(){ return listView.currentItem })
+        compare(listView.currentItem.text, "Hello")
+        \endcode
+
+        \sa verify(), compare(), tryCompare(), SignalSpy::wait()
+    */
+    function tryVerify(expressionFunction, timeout, msg) {
+        if (!expressionFunction || !(expressionFunction instanceof Function)) {
+            qtest_results.fail("First argument must be a function", util.callerFile(), util.callerLine())
+            throw new Error("QtQuickTest::fail")
+        }
+
+        if (timeout && typeof(timeout) !== "number") {
+            qtest_results.fail("timeout argument must be a number", util.callerFile(), util.callerLine())
+            throw new Error("QtQuickTest::fail")
+        }
+
+        if (msg && typeof(msg) !== "string") {
+            qtest_results.fail("message argument must be a string", util.callerFile(), util.callerLine())
+            throw new Error("QtQuickTest::fail")
+        }
+
+        if (!timeout)
+            timeout = 5000
+
+        if (msg === undefined)
+            msg = "function returned false"
+
+        if (!expressionFunction())
+            wait(0)
+
+        var i = 0
+        while (i < timeout && !expressionFunction()) {
+            wait(50)
+            i += 50
+        }
+
+        if (!qtest_results.verify(expressionFunction(), msg, util.callerFile(), util.callerLine()))
             throw new Error("QtQuickTest::fail")
     }
 
@@ -711,6 +778,11 @@ Item {
         \sa compare(), SignalSpy::wait()
     */
     function tryCompare(obj, prop, value, timeout, msg) {
+        if (arguments.length == 1 || (typeof(prop) != "string" && typeof(prop) != "number")) {
+            qtest_results.fail("A property name as string or index is required for tryCompare",
+                        util.callerFile(), util.callerLine())
+            throw new Error("QtQuickTest::fail")
+        }
         if (arguments.length == 2) {
             qtest_results.fail("A value is required for tryCompare",
                         util.callerFile(), util.callerLine())
@@ -763,7 +835,7 @@ Item {
         \c{QEXPECT_FAIL(tag, message, Abort)} in C++.
 
         If the test is not data-driven, then \a tag must be set to
-        the empty string.
+        an empty string.
 
         \sa expectFailContinue()
     */
@@ -789,7 +861,7 @@ Item {
         \c{QEXPECT_FAIL(tag, message, Continue)} in C++.
 
         If the test is not data-driven, then \a tag must be set to
-        the empty string.
+        an empty string.
 
         \sa expectFail()
     */

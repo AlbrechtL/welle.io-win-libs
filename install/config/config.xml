@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Installer>
     <Name>dab-rpi</Name>
-    <Version>0.997</Version>
+    <Version>0.9978</Version>
     <Title>dab-rpi Installer</Title>
     <Publisher>Albrecht Lohofener</Publisher>
     <StartMenuDir>dab-rpi</StartMenuDir>
