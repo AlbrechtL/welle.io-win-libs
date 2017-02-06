@@ -1,15 +1,7 @@
+Copyright (c) 2016-2017 Albrecht Lohofener (albrechtloh@gmx.de) 
+Copyright (c) 2009-2016 Jan van Katwijk Lazy Chair Computing (J.vanKatwijk@gmail.com)
 
-	Copyright (c) 2009 - 2016 
-	Jan van Katwijk
-	Lazy Chair Computing
-	J.vanKatwijk@gmail.com
 
-Any non-GPL usage of this software or parts of this software is strictly
-forbidden.
-
-Commercial non-GPL licensing of this software is possible.
-For more info contact the author, named above.
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             GNU GENERAL PUBLIC LICENSE
                Version 2, June 1991
@@ -351,3 +343,20 @@ proprietary programs.  If your program is a subroutine library, you may
 consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Library General
 Public License instead of this License.
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Icons:
+Navigation icons made by Gregor Cresnar
+(http://www.flaticon.com/authors/gregor-cresnar) from www.flaticon.com
+Application icon made by Freepik
+(http://www.freepik.com) from www.flaticon.com is licensed by CC 3.0 BY
+
+Other:
+Notice some of these images are derived from Google applications resources.
+They were provided under the following license:
+You may use the materials in this directory without restriction to develop
+your apps and to use in your apps.
+
+
