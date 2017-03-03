@@ -1,22 +1,17 @@
 Sources of the libraries
-All libraries are downloaded at 1. May 2016
 
 http://www.fftw.org/install/windows.html
 fftw-3.3.4-dll32.zip
 
-http://www.mega-nerd.com/libsndfile/#Download
-libsndfile-1.0.26-w32-setup.exe
-libsndfile-1.0.26-w64-setup.exe
-
 https://sourceforge.net/projects/libusb/files/libusb-1.0/libusb-1.0.20/libusb-1.0.20.7z/download
 http://libusb.info/
 libusb-1.0.20.7z
-
-https://github.com/adfernandes/precompiled-portaudio-windows/blob/master/portaudio-r1891-build.zip
-portaudio-r1891-build.zip
 
 http://sdr.osmocom.org/trac/attachment/wiki/rtl-sdr/RelWithDebInfo.zip
 RelWithDebInfo.zip
 
 https://github.com/sunqueen/vlc-2.2.1.32-2013/blob/master/win32/lib/libfaad.lib
 libfaad.lib
+
+https://github.com/airspy/host/releases/download/v1.0.9/airspy_host_tools_win32_x86_x64_v1_0_9.zip
+airspy_host_tools_win32_x86_x64_v1_0_9
