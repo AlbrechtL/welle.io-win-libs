@@ -1,6 +1,6 @@
-# dab-rpi_win_libs
+# welle.io-win-libs
 
-This is a collection of libraries and headers to compile dab-rpi on Windows 10.
+This is a collection of libraries and headers to compile welle.io on Windows 10.
 All the libraries should also work on Windows 7 but it is not tested. 32-bit libraries and 64-bit libraries are available.
 
 ### Sources of the libraries
