@@ -9,7 +9,9 @@ Component.prototype.createOperations = function()
 	  if (systemInfo.productType === "windows") {
         component.addOperation("CreateShortcut", "@TargetDir@/welle-io.exe", "@StartMenuDir@/welle.io.lnk",
             "workingDirectory=@TargetDir@", "iconPath=@TargetDir@//welle-io.exe");
-		component.addElevatedOperation("Execute", "@TargetDir@/vcredist_x86.exe", "/quiet", "/norestart");
-		component.addElevatedOperation("Delete", "@TargetDir@/vcredist_x86.exe");
+		component.addElevatedOperation("Execute", "@TargetDir@/vcredist_x86_2012.exe", "/quiet", "/norestart");
+		component.addElevatedOperation("Delete", "@TargetDir@/vcredist_x86_2012.exe");
+		component.addElevatedOperation("Execute", "@TargetDir@/vcredist_x86_2010.exe", "/quiet", "/norestart");
+		component.addElevatedOperation("Delete", "@TargetDir@/vcredist_x86_2010.exe");
     }
 }
