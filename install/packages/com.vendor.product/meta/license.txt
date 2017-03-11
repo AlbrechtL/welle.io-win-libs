@@ -2,12 +2,15 @@
 Copyright (c) 2016-2017 Albrecht Lohofener (albrechtloh@gmx.de)
 
 welle.io uses parts from the following programs 
-- qt.dab
+- qt-dab
   Copyright (c) 2009-2017 Jan van Katwijk Lazy Chair Computing (J.vanKatwijk@gmail.com)
   https://github.com/JvanKatwijk/qt-dab
 - dablin
   Copyright (c) 2016 Stefan Pöschel
   https://github.com/Opendigitalradio/dablin
+
+Contributors (alphabetical)
+andimik, viktorgino
 
 
             GNU GENERAL PUBLIC LICENSE
