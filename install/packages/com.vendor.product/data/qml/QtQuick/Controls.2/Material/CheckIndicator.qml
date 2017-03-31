@@ -34,9 +34,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls.Material 2.1
-import QtQuick.Controls.Material.impl 2.1
+import QtQuick 2.6
+import QtQuick.Controls.Material 2.0
 
 Rectangle {
     id: indicatorItem
@@ -47,7 +46,7 @@ Rectangle {
     border.width: control.checked ? width / 2 : 2
     radius: 2
 
-    property Item control
+    property alias control: ripple.control
 
     Behavior on border.width {
         NumberAnimation {
@@ -61,6 +60,15 @@ Rectangle {
             duration: 100
             easing.type: Easing.OutCubic
         }
+    }
+
+    Ripple {
+        id: ripple
+        width: parent.width
+        height: width
+        control: control
+        colored: control.checked
+        opacity: control.down || control.visualFocus ? 1 : 0
     }
 
     // TODO: This needs to be transparent

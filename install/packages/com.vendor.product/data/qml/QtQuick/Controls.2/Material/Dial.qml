@@ -34,10 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls.Material 2.1
-import QtQuick.Controls.Material.impl 2.1
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls.Material 2.0
 
 T.Dial {
     id: control
@@ -56,7 +55,7 @@ T.Dial {
         border.color: control.enabled ? control.Material.accentColor : control.Material.hintTextColor
     }
 
-    handle: SliderHandle {
+    handle: Rectangle {
         id: handleItem
 
         x: background.x + background.width / 2 - handle.width / 2
@@ -73,10 +72,7 @@ T.Dial {
         ]
         implicitWidth: 14
         implicitHeight: 14
-
-        value: control.value
-        handleHasFocus: control.visualFocus
-        handlePressed: control.pressed
-        handleHovered: control.hovered
+        radius: width / 2
+        color: control.enabled ? control.Material.accentColor : control.Material.hintTextColor
     }
 }

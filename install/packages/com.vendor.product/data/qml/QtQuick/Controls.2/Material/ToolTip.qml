@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls.Material 2.1
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls.Material 2.0
 
 T.ToolTip {
     id: control
@@ -72,7 +72,7 @@ T.ToolTip {
         text: control.text
         font: control.font
         // TODO: wrapMode: Label.Wrap
-        color: control.Material.foreground
+        color: control.Material.primaryTextColor
     }
 
     background: Rectangle {

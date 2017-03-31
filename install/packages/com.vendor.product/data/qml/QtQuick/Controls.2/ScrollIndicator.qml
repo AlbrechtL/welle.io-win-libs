@@ -34,10 +34,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.1
-import QtQuick.Controls.impl 2.1
-import QtQuick.Templates 2.1 as T
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
 
 T.ScrollIndicator {
     id: control
@@ -49,13 +47,14 @@ T.ScrollIndicator {
 
     padding: 2
 
+    //! [contentItem]
     contentItem: Rectangle {
         id: indicator
 
         implicitWidth: 2
         implicitHeight: 2
 
-        color: Default.scrollBarColor
+        color: "#bdbebf"
         visible: control.size < 1.0
         opacity: 0.0
 
@@ -75,4 +74,5 @@ T.ScrollIndicator {
             }
         ]
     }
+    //! [contentItem]
 }

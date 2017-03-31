@@ -34,10 +34,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.1
-import QtQuick.Controls.impl 2.1
-import QtQuick.Templates 2.1 as T
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
 
 T.Drawer {
     id: control
@@ -55,17 +53,28 @@ T.Drawer {
     rightPadding: control.edge === Qt.LeftEdge
     bottomPadding: control.edge === Qt.TopEdge
 
+    //! [enter]
     enter: Transition { SmoothedAnimation { velocity: 5 } }
-    exit: Transition { SmoothedAnimation { velocity: 5 } }
+    //! [enter]
 
+    //! [exit]
+    exit: Transition { SmoothedAnimation { velocity: 5 } }
+    //! [exit]
+
+    //! [contentItem]
+    contentItem: Item { }
+    //! [contentItem]
+
+    //! [background]
     background: Rectangle {
         Rectangle {
             readonly property bool horizontal: control.edge === Qt.LeftEdge || control.edge === Qt.RightEdge
             width: horizontal ? 1 : parent.width
             height: horizontal ? parent.height : 1
-            color: Default.frameDarkColor
+            color: "#353637"
             x: control.edge === Qt.LeftEdge ? parent.width - 1 : 0
             y: control.edge === Qt.TopEdge ? parent.height - 1 : 0
         }
     }
+    //! [background]
 }

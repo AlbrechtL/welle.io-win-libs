@@ -34,10 +34,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.1
-import QtQuick.Controls.impl 2.1
-import QtQuick.Templates 2.1 as T
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
 
 T.Slider {
     id: control
@@ -49,23 +47,22 @@ T.Slider {
 
     padding: 6
 
+    //! [handle]
     handle: Rectangle {
         x: control.leftPadding + (horizontal ? control.visualPosition * (control.availableWidth - width) : (control.availableWidth - width) / 2)
         y: control.topPadding + (horizontal ? (control.availableHeight - height) / 2 : control.visualPosition * (control.availableHeight - height))
         implicitWidth: 28
         implicitHeight: 28
         radius: width / 2
-        color: control.enabled ? (control.pressed
-            ? (control.visualFocus ? Default.focusPressedColor : Default.indicatorPressedColor)
-            : (control.visualFocus ? Default.focusLightColor : Default.backgroundColor)) : Default.indicatorDisabledColor
+        color: control.enabled ? (control.pressed ? (control.visualFocus ? "#cce0ff" : "#f6f6f6") : (control.visualFocus ? "#f0f6ff" : "#ffffff")) : "#fdfdfd"
         border.width: control.visualFocus ? 2 : 1
-        border.color: control.enabled ? (control.visualFocus
-            ? Default.focusColor
-            : (control.pressed ? Default.indicatorFramePressedColor : Default.indicatorFrameColor)) : Default.indicatorFrameDisabledColor
+        border.color: control.enabled ? (control.visualFocus ? "#0066ff" : (control.pressed ? "#808080" : "#909090")) : "#d6d6d6"
 
         readonly property bool horizontal: control.orientation === Qt.Horizontal
     }
+    //! [handle]
 
+    //! [background]
     background: Rectangle {
         x: control.leftPadding + (horizontal ? 0 : (control.availableWidth - width) / 2)
         y: control.topPadding + (horizontal ? (control.availableHeight - height) / 2 : 0)
@@ -74,9 +71,11 @@ T.Slider {
         width: horizontal ? control.availableWidth : implicitWidth
         height: horizontal ? implicitHeight : control.availableHeight
         radius: 3
-        color: Default.buttonColor
+        opacity: control.enabled ? 1 : 0.3
+        color: "#e0e0e0"
         scale: horizontal && control.mirrored ? -1 : 1
 
         readonly property bool horizontal: control.orientation === Qt.Horizontal
     }
+    //! [background]
 }

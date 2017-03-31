@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls.Material 2.1
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls.Material 2.0
 
 T.TextArea {
     id: control
@@ -51,7 +51,7 @@ T.TextArea {
     topPadding: 8
     bottomPadding: 16
 
-    color: enabled ? Material.foreground : Material.hintTextColor
+    color: enabled ? Material.primaryTextColor : Material.hintTextColor
     selectionColor: Material.accentColor
     selectedTextColor: Material.primaryHighlightedTextColor
     cursorDelegate: Rectangle {

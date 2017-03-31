@@ -34,10 +34,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.1
-import QtQuick.Controls.impl 2.1
-import QtQuick.Templates 2.1 as T
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
 
 T.SwipeDelegate {
     id: control
@@ -52,13 +50,14 @@ T.SwipeDelegate {
     padding: 12
     spacing: 12
 
+    //! [contentItem]
     contentItem: Text {
         leftPadding: control.mirrored ? (control.indicator ? control.indicator.width : 0) + control.spacing : 0
         rightPadding: !control.mirrored ? (control.indicator ? control.indicator.width : 0) + control.spacing : 0
 
         text: control.text
         font: control.font
-        color: control.enabled ? Default.textDarkColor : Default.textDisabledColor
+        color: control.enabled ? "#26282a" : "#bdbebf"
         elide: Text.ElideRight
         visible: control.text
         horizontalAlignment: Text.AlignLeft
@@ -72,11 +71,11 @@ T.SwipeDelegate {
             }
         }
     }
+    //! [contentItem]
 
+    //! [background]
     background: Rectangle {
-        color: control.visualFocus
-            ? (control.down ? Default.focusPressedColor : Default.delegateFocusColor)
-            : (control.down ? Default.delegatePressedColor : Default.backgroundColor)
+        color: control.visualFocus ? (control.down ? "#cce0ff" : "#e5efff") : (control.down ? "#bdbebf" : "#ffffff")
 
         Behavior on x {
             enabled: !control.down
@@ -86,4 +85,5 @@ T.SwipeDelegate {
             }
         }
     }
+    //! [background]
 }

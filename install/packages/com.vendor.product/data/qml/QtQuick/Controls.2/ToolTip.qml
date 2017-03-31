@@ -34,10 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.1
-import QtQuick.Controls.impl 2.1
-import QtQuick.Templates 2.1 as T
+import QtQuick 2.6
+import QtQuick.Controls 2.0
+import QtQuick.Templates 2.0 as T
 
 T.ToolTip {
     id: control
@@ -55,13 +54,17 @@ T.ToolTip {
 
     closePolicy: T.Popup.CloseOnEscape | T.Popup.CloseOnPressOutsideParent | T.Popup.CloseOnReleaseOutsideParent
 
+    //! [contentItem]
     contentItem: Text {
         text: control.text
         font: control.font
         // TODO: wrapMode: Label.Wrap
     }
+    //! [contentItem]
 
+    //! [background]
     background: Rectangle {
-        border.color: Default.frameDarkColor
+        border.color: "#353637"
     }
+    //! [background]
 }

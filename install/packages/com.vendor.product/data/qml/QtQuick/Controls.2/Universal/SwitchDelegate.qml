@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls.Universal 2.1
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls.Universal 2.0
 
 T.SwitchDelegate {
     id: control
@@ -76,9 +76,8 @@ T.SwitchDelegate {
     }
 
     background: Rectangle {
-        visible: control.down || control.highlighted || control.visualFocus || control.hovered
-        color: control.down ? control.Universal.listMediumColor :
-               control.hovered ? control.Universal.listLowColor : control.Universal.altMediumLowColor
+        visible: control.down || control.highlighted || control.visualFocus
+        color: control.down ? control.Universal.listMediumColor : control.Universal.altMediumLowColor
         Rectangle {
             width: parent.width
             height: parent.height

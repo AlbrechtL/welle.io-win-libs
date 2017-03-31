@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls.Material 2.1
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls.Material 2.0
 
 T.ScrollBar {
     id: control
@@ -46,43 +46,33 @@ T.ScrollBar {
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                              contentItem.implicitHeight + topPadding + bottomPadding)
 
-    padding: 1
+    padding: 2
+    topPadding: padding + (control.orientation === Qt.Horizontal ? 12 : 0)
+    leftPadding: padding + (control.orientation === Qt.Vertical && !control.mirrored ? 12 : 0)
+    rightPadding: padding + (control.orientation === Qt.Vertical && control.mirrored ? 12 : 0)
 
     contentItem: Rectangle {
         id: handle
 
-        implicitWidth: 13
-        implicitHeight: 13
+        implicitWidth: 4
+        implicitHeight: 4
 
-        color: control.pressed ? control.Material.scrollBarPressedColor :
-               control.hovered ? control.Material.scrollBarHoveredColor : control.Material.scrollBarColor
+        color: control.pressed ? control.Material.scrollBarPressedColor : control.Material.scrollBarColor
         visible: control.size < 1.0
         opacity: 0.0
-    }
 
-    background: Rectangle {
-        implicitWidth: 16
-        implicitHeight: 16
-        color: "#0e000000"
-        opacity: 0.0
-    }
+        states: State {
+            name: "active"
+            when: control.active
+            PropertyChanges { target: handle; opacity: 0.75 }
+        }
 
-    states: State {
-        name: "active"
-        when: control.active
-    }
-
-    transitions: [
-        Transition {
-            to: "active"
-            NumberAnimation { targets: [contentItem, background]; property: "opacity"; to: 1.0 }
-        },
-        Transition {
+        transitions: Transition {
             from: "active"
             SequentialAnimation {
-                PauseAnimation { duration: 2450 }
-                NumberAnimation { targets: [contentItem, background]; property: "opacity"; to: 0.0 }
+                PauseAnimation { duration: 450 }
+                NumberAnimation { target: handle; duration: 200; property: "opacity"; to: 0.0 }
             }
         }
-    ]
+    }
 }

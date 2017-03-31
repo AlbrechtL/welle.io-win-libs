@@ -34,19 +34,28 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls.Material 2.1
-import QtQuick.Controls.Material.impl 2.1
+import QtQuick 2.6
+import QtQuick.Controls.Material 2.0
+import QtQuick.Controls.Material.impl 2.0
 
 Item {
     id: indicator
     implicitWidth: 38
     implicitHeight: 32
 
-    property Item control
-    property alias handle: handle
+    property alias control: ripple.control
 
     Material.elevation: 1
+
+    Ripple {
+        id: ripple
+        x: handle.x + handle.width / 2 - width / 2
+        y: handle.y + handle.height / 2 - height / 2
+        width: handle.width
+        height: width
+        colored: control.checked
+        opacity: control.pressed || control.visualFocus ? 1 : 0
+    }
 
     Rectangle {
         width: parent.width

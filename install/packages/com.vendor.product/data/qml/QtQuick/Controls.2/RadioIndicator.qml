@@ -34,21 +34,16 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.1
-import QtQuick.Controls.impl 2.1
+import QtQuick 2.6
 
 Rectangle {
     implicitWidth: 28
     implicitHeight: 28
 
     radius: width / 2
-    color: control.down
-        ? (control.visualFocus ? Default.focusPressedColor : Default.indicatorPressedColor)
-        : (control.visualFocus ? Default.focusLightColor : Default.backgroundColor)
+    color: control.down ? (control.visualFocus ? "#cce0ff" : "#f6f6f6") : (control.visualFocus ? "#f0f6ff" : "#ffffff")
     border.width: control.visualFocus ? 2 : 1
-    border.color: control.visualFocus ? Default.focusColor : (control.down ? Default.indicatorFramePressedColor : Default.indicatorFrameColor)
-    opacity: enabled ? 1 : 0.3
+    border.color: control.visualFocus ? "#0066ff" : (control.down ? "#808080" : "#909090")
 
     property Item control
 
@@ -58,7 +53,7 @@ Rectangle {
         width: 20
         height: 20
         radius: width / 2
-        color: control.down ? Default.textDarkColor : Default.buttonCheckedColor
+        color: control.down ? "#26282a" : "#353637"
         visible: control.checked
     }
 }

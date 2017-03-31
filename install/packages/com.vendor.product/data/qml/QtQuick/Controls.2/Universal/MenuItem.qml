@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls.Universal 2.1
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls.Universal 2.0
 
 T.MenuItem {
     id: control
@@ -81,8 +81,7 @@ T.MenuItem {
         implicitHeight: 40
 
         color: !control.enabled ? control.Universal.baseLowColor :
-                control.down ? control.Universal.listMediumColor :
-                control.hovered ? control.Universal.listLowColor : control.Universal.altMediumLowColor
+                control.down ? control.Universal.listMediumColor : control.Universal.altMediumLowColor
 
         Rectangle {
             x: 1; y: 1

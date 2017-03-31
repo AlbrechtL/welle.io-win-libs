@@ -34,15 +34,17 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick 2.6
 import QtQuick.Window 2.2
-import QtQuick.Controls 2.1
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls.Material 2.1
-import QtQuick.Controls.Material.impl 2.1
+import QtQuick.Controls 2.0
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls.Material 2.0
+import QtQuick.Controls.Material.impl 2.0
 
 T.ComboBox {
     id: control
+
+    Material.elevation: control.pressed ? 8 : 2
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
@@ -52,30 +54,23 @@ T.ComboBox {
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     spacing: 6
-    // external vertical padding is 6 (to increase touch area)
-    padding: 12
-    leftPadding: padding - 4
-    rightPadding: padding - 4
+    padding: 16
 
-    Material.elevation: flat ? control.pressed || control.hovered ? 2 : 0
-                             : control.pressed ? 8 : 2
-    Material.background: flat ? "transparent" : undefined
-    Material.foreground: flat ? undefined : Material.primaryTextColor
+    // Don't use toolTextColor, as that is often white when we have a white background.
+    Material.foreground: Material.foreground === Material.toolTextColor ? undefined : Material.foreground
 
     delegate: MenuItem {
         width: control.popup.width
         text: control.textRole ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole]) : modelData
-        Material.foreground: control.currentIndex === index ? control.popup.Material.accent : control.popup.Material.foreground
+        Material.foreground: control.currentIndex === index ? control.Material.accent : control.Material.foreground
         highlighted: control.highlightedIndex === index
-        hoverEnabled: control.hoverEnabled
     }
 
     indicator: Image {
         x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding
         y: control.topPadding + (control.availableHeight - height) / 2
-        source: "image://material/drop-indicator/" + (control.enabled ? control.Material.foreground : control.Material.hintTextColor)
-        sourceSize.width: width
-        sourceSize.height: height
+        opacity: !control.enabled ? 0.5 : 1.0
+        source: "qrc:/qt-project.org/imports/QtQuick/Controls.2/Material/images/drop-indicator.png"
     }
 
     contentItem: Text {
@@ -84,7 +79,7 @@ T.ComboBox {
 
         text: control.displayText
         font: control.font
-        color: control.enabled ? control.Material.foreground : control.Material.hintTextColor
+        color: control.enabled ? control.Material.primaryTextColor : control.Material.hintTextColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
@@ -94,10 +89,7 @@ T.ComboBox {
         implicitWidth: 120
         implicitHeight: 48
 
-        // external vertical padding is 6 (to increase touch area)
-        y: 6
-        height: parent.height - 12
-        radius: control.flat ? 0 : 2
+        radius: 2
         color: control.Material.dialogColor
 
         Behavior on color {
@@ -106,20 +98,17 @@ T.ComboBox {
             }
         }
 
-        layer.enabled: control.enabled && control.Material.background.a > 0
+        layer.enabled: control.enabled && control.Material.elevation > 0
         layer.effect: ElevationEffect {
             elevation: control.Material.elevation
         }
 
-        Ripple {
-            clip: control.flat
-            clipRadius: control.flat ? 0 : 2
+        Rectangle {
             width: parent.width
             height: parent.height
-            pressed: control.pressed
-            anchor: control
-            active: control.pressed || control.visualFocus || control.hovered
-            color: control.Material.rippleColor
+            radius: parent.radius
+            visible: control.visualFocus
+            color: control.Material.checkBoxUncheckedRippleColor
         }
     }
 
@@ -159,7 +148,7 @@ T.ComboBox {
 
         background: Rectangle {
             radius: 2
-            color: control.popup.Material.dialogColor
+            color: control.Material.dialogColor
 
             layer.enabled: control.enabled
             layer.effect: ElevationEffect {

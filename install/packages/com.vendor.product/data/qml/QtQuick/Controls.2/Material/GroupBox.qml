@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls.Material 2.1
-import QtQuick.Controls.Material.impl 2.1
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls.Material 2.0
+import QtQuick.Controls.Material.impl 2.0
 
 T.GroupBox {
     id: control
@@ -54,13 +54,15 @@ T.GroupBox {
     padding: 12
     topPadding: padding + (label && label.implicitWidth > 0 ? label.implicitHeight + spacing : 0)
 
+    contentItem: Item {}
+
     label: Text {
         x: control.leftPadding
         width: control.availableWidth
 
         text: control.title
         font: control.font
-        color: control.enabled ? control.Material.foreground : control.Material.hintTextColor
+        color: control.enabled ? control.Material.primaryTextColor : control.Material.hintTextColor
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter

@@ -615,7 +615,6 @@ Control {
                         activated(index)
                     comboBox.editText = text
                 }
-                onTextChanged: if (index === currentIndex) popup.updateSelectedText();
                 checkable: true
                 exclusiveGroup: eg
             }

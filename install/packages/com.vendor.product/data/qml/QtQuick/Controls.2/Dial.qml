@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.1
-import QtQuick.Controls.impl 2.1
-import QtQuick.Templates 2.1 as T
+import QtQuick 2.6
+import QtQuick.Controls 2.0
+import QtQuick.Controls.impl 2.0
+import QtQuick.Templates 2.0 as T
 
 T.Dial {
     id: control
@@ -45,21 +45,24 @@ T.Dial {
     implicitWidth: 184
     implicitHeight: 184
 
+    //! [background]
     background: DialRing {
         width: control.availableWidth
         height: control.availableHeight
-        color: control.visualFocus ? Default.focusColor : Default.frameDarkColor
+        color: control.visualFocus ? "#0066ff" : "#353637"
         progress: control.position
         opacity: control.enabled ? 1 : 0.3
     }
+    //! [background]
 
+    //! [handle]
     handle: Image {
         id: handleItem
         x: background.x + background.width / 2 - handle.width / 2
         y: background.y + background.height / 2 - handle.height / 2
         width: 14
         height: 10
-        source: "image://default/dial-indicator/" + (control.visualFocus ? Default.focusColor : Default.textColor)
+        source: "image://default/dial-indicator/" + (control.visualFocus ? "#0066ff" : "#353637")
         sourceSize.width: width
         sourceSize.height: height
         antialiasing: true
@@ -75,4 +78,5 @@ T.Dial {
             }
         ]
     }
+    //! [handle]
 }

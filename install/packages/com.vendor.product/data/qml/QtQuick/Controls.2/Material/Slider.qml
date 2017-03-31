@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls.Material 2.1
-import QtQuick.Controls.Material.impl 2.1
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls.Material 2.0
+import QtQuick.Controls.Material.impl 2.0
 
 T.Slider {
     id: control
@@ -55,7 +55,6 @@ T.Slider {
         value: control.value
         handleHasFocus: control.visualFocus
         handlePressed: control.pressed
-        handleHovered: control.hovered
     }
 
     background: Rectangle {
@@ -65,7 +64,7 @@ T.Slider {
         implicitHeight: horizontal ? 48 : 200
         width: horizontal ? control.availableWidth : 1
         height: horizontal ? 1 : control.availableHeight
-        color: control.Material.foreground
+        color: control.Material.primaryTextColor
         scale: horizontal && control.mirrored ? -1 : 1
 
         readonly property bool horizontal: control.orientation === Qt.Horizontal

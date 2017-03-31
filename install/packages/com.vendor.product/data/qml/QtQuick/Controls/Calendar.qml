@@ -218,9 +218,7 @@ Control {
     */
     property CalendarModel __model: CalendarModel {
         locale: calendar.__locale
-
-        // TODO: don't set the hour when QTBUG-56787 is fixed
-        visibleDate: new Date(visibleYear, visibleMonth, 1, 12)
+        visibleDate: new Date(visibleYear, visibleMonth, 1)
     }
 
     style: Settings.styleComponent(Settings.style, "CalendarStyle.qml", calendar)

@@ -34,8 +34,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls.Universal 2.1
+import QtQuick 2.6
+import QtQuick.Controls.Universal 2.0
 
 Rectangle {
     implicitWidth: 20
@@ -45,8 +45,7 @@ Rectangle {
     border.width: 2 // RadioButtonBorderThemeThickness
     border.color:  control.checked ? "transparent" :
                   !control.enabled ? control.Universal.baseLowColor :
-                   control.down ? control.Universal.baseMediumColor :
-                   control.hovered ? control.Universal.baseHighColor : control.Universal.baseMediumHighColor
+                   control.down ? control.Universal.baseMediumColor : control.Universal.baseMediumHighColor
 
     property var control
 
@@ -73,7 +72,6 @@ Rectangle {
         radius: width / 2
         opacity: control.checked ? 1 : 0
         color: !control.enabled ? control.Universal.baseLowColor :
-                control.down ? control.Universal.baseMediumColor :
-                control.hovered ? control.Universal.baseHighColor : control.Universal.baseMediumHighColor
+                control.down ? control.Universal.baseMediumColor : control.Universal.baseMediumHighColor
     }
 }

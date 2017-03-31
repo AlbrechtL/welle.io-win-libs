@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls 2.1
-import QtQuick.Controls.impl 2.1
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls 2.0
+import QtQuick.Controls.impl 2.0
 
 T.ProgressBar {
     id: control
@@ -47,6 +47,7 @@ T.ProgressBar {
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                              contentItem.implicitHeight + topPadding + bottomPadding)
 
+    //! [contentItem]
     contentItem: ProgressStrip {
         id: strip
         implicitHeight: 6
@@ -60,7 +61,9 @@ T.ProgressBar {
             running: control.visible && control.indeterminate
         }
     }
+    //! [contentItem]
 
+    //! [background]
     background: Rectangle {
         implicitWidth: 200
         implicitHeight: 6
@@ -69,6 +72,7 @@ T.ProgressBar {
         width: control.availableWidth
         height: 6
 
-        color: Default.progressBarColor
+        color: "#e4e4e4"
     }
+    //! [background]
 }

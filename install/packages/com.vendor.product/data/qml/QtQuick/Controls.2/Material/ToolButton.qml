@@ -34,10 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import QtQuick.Controls.Material 2.1
-import QtQuick.Controls.Material.impl 2.1
+import QtQuick 2.6
+import QtQuick.Templates 2.0 as T
+import QtQuick.Controls.Material 2.0
 
 T.ToolButton {
     id: control
@@ -53,27 +52,17 @@ T.ToolButton {
     contentItem: Text {
         text: control.text
         font: control.font
-        color: !control.enabled ? control.Material.hintTextColor :
-                control.checked || control.highlighted ? control.Material.accent : control.Material.foreground
+        color: control.enabled ? control.Material.primaryTextColor : control.Material.hintTextColor
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
 
-    background: Ripple {
+    background: Rectangle {
         implicitWidth: 48
         implicitHeight: 48
 
-        readonly property bool square: control.contentItem.implicitWidth <= control.contentItem.implicitHeight
-
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
-        clip: !square
-        width: square ? parent.height / 2 : parent.width
-        height: square ? parent.height / 2 : parent.height
-        pressed: control.pressed
-        anchor: control
-        active: control.enabled && (control.down || control.visualFocus || control.hovered)
-        color: control.Material.rippleColor
+        color: control.down ? control.Material.buttonPressColor : control.Material.buttonHoverColor
+        visible: control.enabled && (control.down || control.visualFocus || control.checked || control.highlighted)
     }
 }
