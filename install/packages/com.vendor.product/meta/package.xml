@@ -5,7 +5,7 @@
     <Version>0.999</Version>
     <ReleaseDate>2017-03-03</ReleaseDate>
     <Licenses>
-        <License name="GNU GENERAL PUBLIC LICENSE" file="license.txt" />
+        <License name="GNU GENERAL PUBLIC LICENSE" file="COPYING" />
     </Licenses>
 	<Script>installscript.qs</Script>
 	<Default>true</Default>
