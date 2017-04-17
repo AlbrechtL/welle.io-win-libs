@@ -7,6 +7,6 @@ set month=%datetime:~4,2%
 set day=%datetime:~6,2%
 set current_date= %year%%month%%day%
 
-C:\Qt\Tools\QtInstallerFramework\2.0\bin\binarycreator.exe -c config/config.xml -p packages %current_date%_welle-io-setup.exe
+C:\Qt\Tools\QtInstallerFramework\2.0\bin\binarycreator.exe --offline-only --config config/config.xml --packages packages %current_date%_welle-io-setup.exe
 
 pause
