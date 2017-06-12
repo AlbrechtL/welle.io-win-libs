@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,9 +34,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Universal 2.0
+import QtQuick 2.9
+import QtQuick.Templates 2.2 as T
+import QtQuick.Controls 2.2
+import QtQuick.Controls.impl 2.2
+import QtQuick.Controls.Universal 2.2
 
 T.TextField {
     id: control
@@ -61,7 +63,7 @@ T.TextField {
     selectedTextColor: Universal.chromeWhiteColor
     verticalAlignment: TextInput.AlignVCenter
 
-    Text {
+    PlaceholderText {
         id: placeholder
         x: control.leftPadding
         y: control.topPadding
@@ -73,7 +75,6 @@ T.TextField {
         color: !control.enabled ? control.Universal.chromeDisabledLowColor :
                 control.activeFocus ? control.Universal.chromeBlackMediumLowColor : control.Universal.baseMediumColor
         visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
-        horizontalAlignment: control.horizontalAlignment
         verticalAlignment: control.verticalAlignment
         elide: Text.ElideRight
     }
@@ -84,7 +85,8 @@ T.TextField {
 
         border.width: 2 // TextControlBorderThemeThickness
         border.color: !control.enabled ? control.Universal.baseLowColor :
-                       control.activeFocus ? control.Universal.accent : control.Universal.chromeDisabledLowColor
+                       control.activeFocus ? control.Universal.accent :
+                       control.hovered ? control.Universal.baseMediumColor : control.Universal.chromeDisabledLowColor
         color: control.enabled ? control.Universal.background : control.Universal.baseLowColor
     }
 }

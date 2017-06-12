@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Material 2.0
-import QtQuick.Controls.Material.impl 2.0
+import QtQuick 2.9
+import QtQuick.Templates 2.2 as T
+import QtQuick.Controls.Material 2.2
+import QtQuick.Controls.Material.impl 2.2
 
 T.Slider {
     id: control
@@ -55,6 +55,7 @@ T.Slider {
         value: control.value
         handleHasFocus: control.visualFocus
         handlePressed: control.pressed
+        handleHovered: control.hovered
     }
 
     background: Rectangle {
@@ -64,7 +65,7 @@ T.Slider {
         implicitHeight: horizontal ? 48 : 200
         width: horizontal ? control.availableWidth : 1
         height: horizontal ? 1 : control.availableHeight
-        color: control.Material.primaryTextColor
+        color: control.Material.foreground
         scale: horizontal && control.mirrored ? -1 : 1
 
         readonly property bool horizontal: control.orientation === Qt.Horizontal

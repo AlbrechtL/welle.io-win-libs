@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Universal 2.0
+import QtQuick 2.9
+import QtQuick.Templates 2.2 as T
+import QtQuick.Controls.Universal 2.2
 
 T.Slider {
     id: control
@@ -60,7 +60,9 @@ T.Slider {
         y: control.topPadding + (horizontal ? (control.availableHeight - height) / 2 : control.visualPosition * (control.availableHeight - height))
 
         radius: 4
-        color: control.pressed ? control.Universal.chromeHighColor : control.enabled ? control.Universal.accent : control.Universal.chromeDisabledHighColor
+        color: control.pressed ? control.Universal.chromeHighColor :
+               control.hovered ? control.Universal.chromeAltLowColor :
+               control.enabled ? control.Universal.accent : control.Universal.chromeDisabledHighColor
     }
 
     background: Item {
@@ -82,7 +84,8 @@ T.Slider {
             width: parent.horizontal ? parent.width : 2 // SliderTrackThemeHeight
             height: !parent.horizontal ? parent.height : 2 // SliderTrackThemeHeight
 
-            color: control.enabled ? control.Universal.baseMediumLowColor : control.Universal.chromeDisabledHighColor
+            color: control.hovered && !control.pressed ? control.Universal.baseMediumColor :
+                   control.enabled ? control.Universal.baseMediumLowColor : control.Universal.chromeDisabledHighColor
         }
 
         Rectangle {

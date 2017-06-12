@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,9 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Universal 2.0
+import QtQuick 2.9
+import QtQuick.Templates 2.2 as T
+import QtQuick.Controls.Universal 2.2
+import QtQuick.Controls.Universal.impl 2.2
 
 T.RadioDelegate {
     id: control
@@ -53,8 +54,6 @@ T.RadioDelegate {
     padding: 12
     topPadding: padding - 1
     bottomPadding: padding + 1
-
-    property Item control
 
     indicator: RadioIndicator {
         x: text ? (control.mirrored ? control.leftPadding : control.width - width - control.rightPadding) : control.leftPadding + (control.availableWidth - width) / 2
@@ -78,8 +77,9 @@ T.RadioDelegate {
     }
 
     background: Rectangle {
-        visible: control.down || control.highlighted || control.visualFocus
-        color: control.down ? control.Universal.listMediumColor : control.Universal.altMediumLowColor
+        visible: control.down || control.highlighted || control.visualFocus || control.hovered
+        color: control.down ? control.Universal.listMediumColor :
+               control.hovered ? control.Universal.listLowColor : control.Universal.altMediumLowColor
         Rectangle {
             width: parent.width
             height: parent.height

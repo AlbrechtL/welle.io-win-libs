@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Material 2.0
-import QtQuick.Controls.Material.impl 2.0
+import QtQuick 2.9
+import QtQuick.Templates 2.2 as T
+import QtQuick.Controls.Material 2.2
+import QtQuick.Controls.Material.impl 2.2
 
 T.Drawer {
     id: control
@@ -50,17 +50,32 @@ T.Drawer {
     contentWidth: contentItem.implicitWidth || (contentChildren.length === 1 ? contentChildren[0].implicitWidth : 0)
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0)
 
+    topPadding: !dim && edge === Qt.BottomEdge && Material.elevation === 0
+    leftPadding: !dim && edge === Qt.RightEdge && Material.elevation === 0
+    rightPadding: !dim && edge === Qt.LeftEdge && Material.elevation === 0
+    bottomPadding: !dim && edge === Qt.TopEdge && Material.elevation === 0
+
     enter: Transition { SmoothedAnimation { velocity: 5 } }
     exit: Transition { SmoothedAnimation { velocity: 5 } }
 
-    contentItem: Item { }
+    Material.elevation: !interactive && !dim ? 0 : 16
 
     background: Rectangle {
         color: control.Material.dialogColor
 
+        Rectangle {
+            readonly property bool horizontal: control.edge === Qt.LeftEdge || control.edge === Qt.RightEdge
+            width: horizontal ? 1 : parent.width
+            height: horizontal ? parent.height : 1
+            color: control.Material.dividerColor
+            x: control.edge === Qt.LeftEdge ? parent.width - 1 : 0
+            y: control.edge === Qt.TopEdge ? parent.height - 1 : 0
+            visible: !control.dim && control.Material.elevation === 0
+        }
+
         layer.enabled: control.position > 0
         layer.effect: ElevationEffect {
-            elevation: 16
+            elevation: control.Material.elevation
             fullHeight: true
         }
     }

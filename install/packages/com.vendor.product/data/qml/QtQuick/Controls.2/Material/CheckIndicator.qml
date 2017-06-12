@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,8 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls.Material 2.0
+import QtQuick 2.9
+import QtQuick.Controls.Material 2.2
+import QtQuick.Controls.Material.impl 2.2
 
 Rectangle {
     id: indicatorItem
@@ -46,7 +47,7 @@ Rectangle {
     border.width: control.checked ? width / 2 : 2
     radius: 2
 
-    property alias control: ripple.control
+    property Item control
 
     Behavior on border.width {
         NumberAnimation {
@@ -60,15 +61,6 @@ Rectangle {
             duration: 100
             easing.type: Easing.OutCubic
         }
-    }
-
-    Ripple {
-        id: ripple
-        width: parent.width
-        height: width
-        control: control
-        colored: control.checked
-        opacity: control.down || control.visualFocus ? 1 : 0
     }
 
     // TODO: This needs to be transparent

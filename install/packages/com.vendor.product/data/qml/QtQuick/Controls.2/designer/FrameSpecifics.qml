@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -42,6 +42,10 @@ Column {
     width: parent.width
 
     ControlSection {
+        width: parent.width
+    }
+
+    FontSection {
         width: parent.width
     }
 

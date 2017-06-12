@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Universal 2.0
+import QtQuick 2.9
+import QtQuick.Templates 2.2 as T
+import QtQuick.Controls.Universal 2.2
 
 T.SwipeDelegate {
     id: control
@@ -54,6 +54,8 @@ T.SwipeDelegate {
     topPadding: padding - 1
     bottomPadding: padding + 1
 
+    swipe.transition: Transition { SmoothedAnimation { velocity: 3; easing.type: Easing.InOutCubic } }
+
     contentItem: Text {
         leftPadding: !control.mirrored ? (control.indicator ? control.indicator.width : 0) + control.spacing : 0
         rightPadding: control.mirrored ? (control.indicator ? control.indicator.width : 0) + control.spacing : 0
@@ -64,18 +66,9 @@ T.SwipeDelegate {
         visible: control.text
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        renderType: Text.NativeRendering
 
         opacity: enabled ? 1.0 : 0.2
         color: control.Universal.foreground
-
-        Behavior on x {
-            enabled: !control.down
-            NumberAnimation {
-                easing.type: Easing.InOutCubic
-                duration: 400
-            }
-        }
     }
 
     background: Rectangle {
@@ -84,21 +77,14 @@ T.SwipeDelegate {
         Rectangle {
             width: parent.width
             height: parent.height
-            color: control.down ? control.Universal.listMediumColor : control.Universal.altMediumLowColor
+            color: control.down ? control.Universal.listMediumColor :
+                   control.hovered ? control.Universal.listLowColor : control.Universal.altMediumLowColor
             Rectangle {
                 width: parent.width
                 height: parent.height
                 visible: control.visualFocus || control.highlighted
                 color: control.Universal.accent
                 opacity: control.Universal.theme === Universal.Light ? 0.4 : 0.6
-            }
-        }
-
-        Behavior on x {
-            enabled: !control.down
-            NumberAnimation {
-                easing.type: Easing.InOutCubic
-                duration: 400
             }
         }
     }

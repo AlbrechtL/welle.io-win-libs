@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,8 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.impl 2.2
+import QtQuick.Templates 2.2 as T
 
 T.TabButton {
     id: control
@@ -48,22 +50,20 @@ T.TabButton {
 
     padding: 6
 
-    //! [contentItem]
     contentItem: Text {
         text: control.text
         font: control.font
         elide: Text.ElideRight
         opacity: enabled ? 1 : 0.3
-        color: !control.checked ? "#ffffff" : control.down ? "#26282a" : "#353637"
+        color: !control.checked ? Default.textLightColor : control.down ? Default.textDarkColor : Default.textColor
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
-    //! [contentItem]
 
-    //! [background]
     background: Rectangle {
         implicitHeight: 40
-        color: control.down ? (control.checked ? "#e4e4e4" : "#585a5c") : (control.checked ? "transparent" : "#353637")
+        color: control.down
+            ? (control.checked ? Default.tabButtonCheckedPressedColor : Default.tabButtonPressedColor)
+            : (control.checked ? "transparent" : Default.tabButtonColor)
     }
-    //! [background]
 }

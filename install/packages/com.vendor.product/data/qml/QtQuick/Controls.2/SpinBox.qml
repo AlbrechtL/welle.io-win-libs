@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,8 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.impl 2.2
+import QtQuick.Templates 2.2 as T
 
 T.SpinBox {
     id: control
@@ -54,30 +56,27 @@ T.SpinBox {
     leftPadding: padding + (control.mirrored ? (up.indicator ? up.indicator.width : 0) : (down.indicator ? down.indicator.width : 0))
     rightPadding: padding + (control.mirrored ? (down.indicator ? down.indicator.width : 0) : (up.indicator ? up.indicator.width : 0))
 
-    //! [validator]
     validator: IntValidator {
         locale: control.locale.name
         bottom: Math.min(control.from, control.to)
         top: Math.max(control.from, control.to)
     }
-    //! [validator]
 
-    //! [contentItem]
     contentItem: TextInput {
         z: 2
         text: control.textFromValue(control.value, control.locale)
         opacity: control.enabled ? 1 : 0.3
 
         font: control.font
-        color: "#353637"
-        selectionColor: "#0066ff"
-        selectedTextColor: "#ffffff"
+        color: Default.textColor
+        selectionColor: Default.focusColor
+        selectedTextColor: Default.textLightColor
         horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter
 
         readOnly: !control.editable
         validator: control.validator
-        inputMethodHints: Qt.ImhFormattedNumbersOnly
+        inputMethodHints: control.inputMethodHints
 
         Rectangle {
             x: -6 - (down.indicator ? 1 : 0)
@@ -86,60 +85,52 @@ T.SpinBox {
             height: control.height
             visible: control.activeFocus
             color: "transparent"
-            border.color: "#0066ff"
+            border.color: Default.focusColor
             border.width: 2
         }
     }
-    //! [contentItem]
 
-    //! [up.indicator]
     up.indicator: Rectangle {
         x: control.mirrored ? 0 : parent.width - width
         height: parent.height
         implicitWidth: 40
         implicitHeight: 40
-        color: up.pressed ? "#d0d0d0" : "#e0e0e0"
+        color: up.pressed ? Default.buttonPressedColor : Default.buttonColor
 
         Rectangle {
             x: (parent.width - width) / 2
             y: (parent.height - height) / 2
             width: parent.width / 3
             height: 2
-            color: enabled ? "#353637" : "#bdbebf"
+            color: enabled ? Default.textColor : Default.textDisabledColor
         }
         Rectangle {
             x: (parent.width - width) / 2
             y: (parent.height - height) / 2
             width: 2
             height: parent.width / 3
-            color: enabled ? "#353637" : "#bdbebf"
+            color: enabled ? Default.textColor : Default.textDisabledColor
         }
     }
-    //! [up.indicator]
 
-    //! [down.indicator]
     down.indicator: Rectangle {
         x: control.mirrored ? parent.width - width : 0
         height: parent.height
         implicitWidth: 40
         implicitHeight: 40
-        color: down.pressed ? "#d0d0d0" : "#e0e0e0"
+        color: down.pressed ? Default.buttonPressedColor : Default.buttonColor
 
         Rectangle {
             x: (parent.width - width) / 2
             y: (parent.height - height) / 2
             width: parent.width / 3
             height: 2
-            color: enabled ? "#353637" : "#bdbebf"
+            color: enabled ? Default.textColor : Default.textDisabledColor
         }
     }
-    //! [down.indicator]
 
-    //! [background]
     background: Rectangle {
-        opacity: control.enabled ? 1 : 0.3
         implicitWidth: 140
-        border.color: "#e0e0e0"
+        border.color: Default.buttonColor
     }
-    //! [background]
 }

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,8 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.impl 2.2
+import QtQuick.Templates 2.2 as T
 
 T.GroupBox {
     id: control
@@ -52,32 +54,24 @@ T.GroupBox {
     padding: 12
     topPadding: padding + (label && label.implicitWidth > 0 ? label.implicitHeight + spacing : 0)
 
-    //! [contentItem]
-    contentItem: Item { }
-    //! [contentItem]
-
-    //! [label]
     label: Text {
         x: control.leftPadding
         width: control.availableWidth
 
         text: control.title
         font: control.font
-        color: control.enabled ? "#353637" : "#bdbebf"
+        color: control.enabled ? Default.textColor : Default.textDisabledColor
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
     }
-    //! [label]
 
-    //! [background]
     background: Rectangle {
         y: control.topPadding - control.padding
         width: parent.width
         height: parent.height - control.topPadding + control.padding
 
         color: "transparent"
-        border.color: "#bdbebf"
+        border.color: Default.frameLightColor
     }
-    //! [background]
 }

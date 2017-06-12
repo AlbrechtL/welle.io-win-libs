@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,28 +34,19 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls.Material 2.0
-import QtQuick.Controls.Material.impl 2.0
+import QtQuick 2.9
+import QtQuick.Controls.Material 2.2
+import QtQuick.Controls.Material.impl 2.2
 
 Item {
     id: indicator
     implicitWidth: 38
     implicitHeight: 32
 
-    property alias control: ripple.control
+    property Item control
+    property alias handle: handle
 
     Material.elevation: 1
-
-    Ripple {
-        id: ripple
-        x: handle.x + handle.width / 2 - width / 2
-        y: handle.y + handle.height / 2 - height / 2
-        width: handle.width
-        height: width
-        colored: control.checked
-        opacity: control.pressed || control.visualFocus ? 1 : 0
-    }
 
     Rectangle {
         width: parent.width

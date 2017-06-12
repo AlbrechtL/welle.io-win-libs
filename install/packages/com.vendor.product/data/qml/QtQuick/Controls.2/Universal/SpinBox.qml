@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Universal 2.0
+import QtQuick 2.9
+import QtQuick.Templates 2.2 as T
+import QtQuick.Controls.Universal 2.2
 
 T.SpinBox {
     id: control
@@ -79,7 +79,7 @@ T.SpinBox {
 
         readOnly: !control.editable
         validator: control.validator
-        inputMethodHints: Qt.ImhFormattedNumbersOnly
+        inputMethodHints: control.inputMethodHints
     }
 
     up.indicator: Item {
@@ -92,9 +92,11 @@ T.SpinBox {
             x: 2; y: 4
             width: parent.width - 4
             height: parent.height - 8
-            color: !control.up.pressed ? "transparent" :
-                   control.activeFocus ? control.Universal.accent
-                                       : control.Universal.chromeDisabledLowColor
+            color: control.activeFocus ? control.Universal.accent :
+                   control.up.pressed ? control.Universal.baseMediumLowColor :
+                   control.up.hovered ? control.Universal.baseLowColor : "transparent"
+            visible: control.up.pressed || control.up.hovered
+            opacity: control.activeFocus && !control.up.pressed ? 0.4 : 1.0
         }
 
         Image {
@@ -118,9 +120,11 @@ T.SpinBox {
             x: 2; y: 4
             width: parent.width - 4
             height: parent.height - 8
-            color: !control.down.pressed ? "transparent" :
-                     control.activeFocus ? control.Universal.accent
-                                         : control.Universal.chromeDisabledLowColor
+            color: control.activeFocus ? control.Universal.accent :
+                   control.down.pressed ? control.Universal.baseMediumLowColor :
+                   control.down.hovered ? control.Universal.baseLowColor : "transparent"
+            visible: control.down.pressed || control.down.hovered
+            opacity: control.activeFocus && !control.down.pressed ? 0.4 : 1.0
         }
 
         Image {
@@ -140,7 +144,8 @@ T.SpinBox {
 
         border.width: 2 // TextControlBorderThemeThickness
         border.color: !control.enabled ? control.Universal.baseLowColor :
-                       control.activeFocus ? control.Universal.accent : control.Universal.chromeDisabledLowColor
+                       control.activeFocus ? control.Universal.accent :
+                       control.hovered ? control.Universal.baseMediumColor : control.Universal.chromeDisabledLowColor
         color: control.enabled ? control.Universal.background : control.Universal.baseLowColor
     }
 }

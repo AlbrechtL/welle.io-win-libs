@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls.Material 2.0
-import QtQuick.Controls.Material.impl 2.0
+import QtQuick 2.9
+import QtQuick.Controls.Material 2.2
+import QtQuick.Controls.Material.impl 2.2
 
 Rectangle {
     implicitWidth: 20
@@ -46,16 +46,7 @@ Rectangle {
     border.color: control.checked || control.down ? control.Material.accentColor : control.Material.secondaryTextColor
     color: "transparent"
 
-    property alias control: ripple.control
-
-    Ripple {
-        id: ripple
-        width: parent.width
-        height: width
-        control: control
-        colored: control.checked
-        opacity: control.down || control.visualFocus ? 1 : 0
-    }
+    property Item control
 
     Rectangle {
         x: (parent.width - width) / 2

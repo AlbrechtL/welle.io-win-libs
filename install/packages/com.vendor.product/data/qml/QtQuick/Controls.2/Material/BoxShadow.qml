@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,10 +34,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtGraphicalEffects 1.0
+import QtQuick 2.9
+import QtQuick.Controls.Material 2.2
+import QtQuick.Controls.Material.impl 2.2
 
-/*!
+/*
    A implementation of CSS's box-shadow, used by ElevationEffect for a Material Design
    elevation shadow effect.
  */

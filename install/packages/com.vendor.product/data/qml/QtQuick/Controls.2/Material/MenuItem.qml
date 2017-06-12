@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Material 2.0
-import QtQuick.Controls.Material.impl 2.0
+import QtQuick 2.9
+import QtQuick.Templates 2.2 as T
+import QtQuick.Controls.Material 2.2
+import QtQuick.Controls.Material.impl 2.2
 
 T.MenuItem {
     id: control
@@ -67,7 +67,7 @@ T.MenuItem {
 
         text: control.text
         font: control.font
-        color: control.enabled ? control.Material.primaryTextColor : control.Material.hintTextColor
+        color: control.enabled ? control.Material.foreground : control.Material.hintTextColor
         elide: Text.ElideRight
         visible: control.text
         horizontalAlignment: Text.AlignLeft
@@ -77,7 +77,17 @@ T.MenuItem {
     background: Rectangle {
         implicitWidth: 200
         implicitHeight: 48
-        visible: control.down || control.highlighted
-        color: control.down ? control.Material.buttonPressColor : control.Material.listHighlightColor
+        color: control.highlighted ? control.Material.listHighlightColor : "transparent"
+
+        Ripple {
+            width: parent.width
+            height: parent.height
+
+            clip: visible
+            pressed: control.pressed
+            anchor: control
+            active: control.down || control.visualFocus || control.hovered
+            color: control.Material.rippleColor
+        }
     }
 }

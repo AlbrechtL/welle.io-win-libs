@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,8 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.impl 2.2
+import QtQuick.Templates 2.2 as T
 
 T.SwipeDelegate {
     id: control
@@ -50,40 +52,24 @@ T.SwipeDelegate {
     padding: 12
     spacing: 12
 
-    //! [contentItem]
+    swipe.transition: Transition { SmoothedAnimation { velocity: 3; easing.type: Easing.InOutCubic } }
+
     contentItem: Text {
         leftPadding: control.mirrored ? (control.indicator ? control.indicator.width : 0) + control.spacing : 0
         rightPadding: !control.mirrored ? (control.indicator ? control.indicator.width : 0) + control.spacing : 0
 
         text: control.text
         font: control.font
-        color: control.enabled ? "#26282a" : "#bdbebf"
+        color: control.enabled ? Default.textDarkColor : Default.textDisabledColor
         elide: Text.ElideRight
         visible: control.text
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-
-        Behavior on x {
-            enabled: !control.down
-            NumberAnimation {
-                easing.type: Easing.InOutCubic
-                duration: 400
-            }
-        }
     }
-    //! [contentItem]
 
-    //! [background]
     background: Rectangle {
-        color: control.visualFocus ? (control.down ? "#cce0ff" : "#e5efff") : (control.down ? "#bdbebf" : "#ffffff")
-
-        Behavior on x {
-            enabled: !control.down
-            NumberAnimation {
-                easing.type: Easing.InOutCubic
-                duration: 400
-            }
-        }
+        color: control.visualFocus
+            ? (control.down ? Default.focusPressedColor : Default.delegateFocusColor)
+            : (control.down ? Default.delegatePressedColor : Default.backgroundColor)
     }
-    //! [background]
 }

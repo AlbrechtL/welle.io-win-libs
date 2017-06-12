@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,8 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.impl 2.2
+import QtQuick.Templates 2.2 as T
 
 T.PageIndicator {
     id: control
@@ -48,20 +50,17 @@ T.PageIndicator {
     padding: 6
     spacing: 6
 
-    //! [delegate]
     delegate: Rectangle {
         implicitWidth: 8
         implicitHeight: 8
 
         radius: width / 2
-        color: "#28282a" // TODO
+        color: Default.pageIndicatorColor
 
         opacity: index === currentIndex ? 0.95 : pressed ? 0.7 : 0.45
         Behavior on opacity { OpacityAnimator { duration: 100 } }
     }
-    //! [delegate]
 
-    //! [contentItem]
     contentItem: Row {
         spacing: control.spacing
 
@@ -70,5 +69,4 @@ T.PageIndicator {
             delegate: control.delegate
         }
     }
-    //! [contentItem]
 }

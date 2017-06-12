@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,8 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.impl 2.2
+import QtQuick.Templates 2.2 as T
 
 T.ScrollIndicator {
     id: control
@@ -47,14 +49,13 @@ T.ScrollIndicator {
 
     padding: 2
 
-    //! [contentItem]
     contentItem: Rectangle {
         id: indicator
 
         implicitWidth: 2
         implicitHeight: 2
 
-        color: "#bdbebf"
+        color: Default.scrollBarColor
         visible: control.size < 1.0
         opacity: 0.0
 
@@ -74,5 +75,4 @@ T.ScrollIndicator {
             }
         ]
     }
-    //! [contentItem]
 }

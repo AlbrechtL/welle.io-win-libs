@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,7 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.impl 2.2
 
 Rectangle {
     id: indicator
@@ -44,14 +46,19 @@ Rectangle {
     implicitWidth: 28
     implicitHeight: 28
 
-    color: control.enabled ? (control.down ? (control.visualFocus ? "#cce0ff" : "#f6f6f6") : "#ffffff") : "#353637"
+    color: control.enabled ? (control.down
+        ? (control.visualFocus ? Default.focusPressedColor : Default.indicatorPressedColor)
+        : Default.backgroundColor) : Default.disabledDarkColor
     border.width: control.visualFocus ? 2 : 1
-    border.color: control.enabled ? (control.visualFocus ? "#0066ff" : (control.down ? "#808080" : "#909090")) : "transparent"
+    border.color: control.enabled ? (control.visualFocus
+        ? Default.focusColor
+        : (control.down ? Default.indicatorFramePressedColor : Default.indicatorFrameColor)) : "transparent"
+    opacity: enabled ? 1 : 0.3
 
     Image {
         x: (parent.width - width) / 2
         y: (parent.height - height) / 2
-        source: "image://default/check/" + (control.visualFocus ? "#0066ff" : "#353637")
+        source: "image://default/check/" + (control.visualFocus ? Default.focusColor : Default.textColor)
         sourceSize.width: width
         sourceSize.height: height
         visible: control.checkState === Qt.Checked
@@ -62,7 +69,7 @@ Rectangle {
         y: (parent.height - height) / 2
         width: 16
         height: 3
-        color: control.visualFocus ? "#0066ff" : "#353637"
+        color: control.visualFocus ? Default.focusColor : Default.frameDarkColor
         visible: control.checkState === Qt.PartiallyChecked
     }
 }

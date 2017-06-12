@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,21 +34,28 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Templates 2.0 as T
-import QtQuick.Controls.Universal 2.0
+import QtQuick 2.9
+import QtQuick.Templates 2.2 as T
+import QtQuick.Controls.Universal 2.2
 
-Rectangle {
+Item {
     implicitWidth: 44
     implicitHeight: 20
 
-    radius: 10
-    color: !control.enabled ? "transparent" :
-            control.pressed ? control.Universal.baseMediumColor :
-            control.checked ? control.Universal.accent : "transparent"
-    border.color: !control.enabled ? control.Universal.baseLowColor :
-                   control.checked && !control.pressed ? control.Universal.accent : control.Universal.baseMediumColor
-    border.width: 2
+    Rectangle {
+        width: parent.width
+        height: parent.height
+
+        radius: 10
+        color: !control.enabled ? "transparent" :
+                control.pressed ? control.Universal.baseMediumColor :
+                control.checked ? control.Universal.accent : "transparent"
+        border.color: !control.enabled ? control.Universal.baseLowColor :
+                       control.checked && !control.pressed ? control.Universal.accent :
+                       control.hovered && !control.checked && !control.pressed ? control.Universal.baseHighColor : control.Universal.baseMediumColor
+        opacity: control.hovered && control.checked && !control.pressed ? (control.Universal.theme === Universal.Light ? 0.7 : 0.9) : 1.0
+        border.width: 2
+    }
 
     property Item control
 
@@ -58,7 +65,8 @@ Rectangle {
         radius: 5
 
         color: !control.enabled ? control.Universal.baseLowColor :
-                control.pressed || control.checked ? control.Universal.chromeWhiteColor : control.Universal.baseMediumHighColor
+                control.pressed || control.checked ? control.Universal.chromeWhiteColor :
+                control.hovered && !control.checked ? control.Universal.baseHighColor : control.Universal.baseMediumHighColor
 
         x: Math.max(5, Math.min(parent.width - width - 5,
                                 control.visualPosition * parent.width - (width / 2)))
