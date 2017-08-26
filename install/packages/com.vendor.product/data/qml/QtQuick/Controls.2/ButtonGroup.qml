@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 The Qt Company Ltd.
+** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
@@ -34,18 +34,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls.Material 2.0
+import QtQuick 2.9
+import QtQuick.Templates 2.2 as T
 
-Rectangle {
-    property Item control
-    property bool colored: false
-
-    radius: width / 2
-    scale: 2.5
-    color: colored ? control.Material.checkBoxCheckedRippleColor : control.Material.checkBoxUncheckedRippleColor
-
-    Behavior on opacity {
-        NumberAnimation {}
-    }
-}
+T.ButtonGroup { }
