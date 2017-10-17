@@ -12,5 +12,3 @@ set filename=%current_date%_%git_hash%_welle-io-setup.exe
 
 echo Creating %filename%
 C:\Qt\Tools\QtInstallerFramework\2.0\bin\binarycreator.exe --offline-only --config config/config.xml --packages packages %filename%
-
-pause
