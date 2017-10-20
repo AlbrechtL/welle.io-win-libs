@@ -8,7 +8,7 @@ set day=%datetime:~6,2%
 set current_date=%year%%month%%day%
 for /f %%i in ('git -C %1 rev-parse --short HEAD') do set git_hash=%%i
 
-set filename=%current_date%_%git_hash%_welle-io-setup.exe
+set filename=%current_date%_%git_hash%_Windows_welle-io-setup.exe
 
 echo Creating %filename%
 C:\Qt\Tools\QtInstallerFramework\2.0\bin\binarycreator.exe --offline-only --config config/config.xml --packages packages %filename%
