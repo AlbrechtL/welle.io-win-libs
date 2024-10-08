@@ -14,4 +14,4 @@ airspy | https://github.com/airspy/airspyone_host/releases/download/v1.0.10/airs
 libmp3lame | http://www.rarewares.org/files/mp3/libmp3lame-3.100x64.zip
 mpg123 | http://www.mpg123.de/download/win64/1.29.3/mpg123-1.29.3-x86-64.zip 
 pthreadvc2.dll| https://windows.php.net/downloads/pecl/releases/pthreads/3.1.6/php_pthreads-3.1.6-7.0-ts-vc14-x64.zip
-rtlsdr | https://github.com/rtlsdrblog/rtl-sdr-blog/releases/download/v1.3.6/Release.zip
+rtlsdr | https://ftp.osmocom.org/binaries/windows/rtl-sdr/rtl-sdr-64bit-20241006.zip
